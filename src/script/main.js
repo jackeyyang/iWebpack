@@ -1,3 +1,5 @@
+require('./jquery')
+
 module.export = function (){
-	console.log('main');
+	console.log('mainasdbbb');
 }
