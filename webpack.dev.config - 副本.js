@@ -10,16 +10,14 @@ module.exports = {
 		page1: './src/script/page1.js'
 	},
 	output: {
-		// path: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent','dist'),
-		path: path.join(__dirname,'dist'),
+		path: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent','dist'),
 		filename: 'script/[name].[chunkhash:8].js'
 	},
 	plugins: [
 		new htmlWebpackPlugin({
 			template: './src/index.html',
-			filename: 'index.html',
-			alwaysWriteToDisk: true,
-			devServer: false
+			filename: 'index.jsp',
+			alwaysWriteToDisk: true
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['common','manifest'],
@@ -28,8 +26,7 @@ module.exports = {
 		new HtmlWebpackHarddiskPlugin()
 	],
 	devServer: {
-	  // contentBase: path.join(__dirname,'dist'),
-	  // contentBase: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent',"dist"),
+	  contentBase: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent',"dist"),
 	  // contentBase: path.join('F:\\Trunk2\\Trunk2Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\javaWebTest',"dist"),
 	  port: 8088
 	}
