@@ -1,5 +1,16 @@
-require('./jquery')
+var $ = require('./jquery')
 
-module.export = function (){
-	console.log('mainasdbbb');
+var core = {
+    init: function(){
+        $('#parent').click(function(){
+            alert(1);
+        });
+        $('#child').click(function(e){
+            e.stopPropagation();
+            alert(222);
+        });
+    },
 }
+
+core.init();
+module.export = core;
