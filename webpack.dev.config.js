@@ -6,8 +6,9 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = {
 	entry: {
+		common: ['./src/script/common/common.js'],
 		main: './src/script/main.js',
-		page1: './src/script/page1.js'
+		page1: './src/script/page1/page1.js'
 	},
 	output: {
 		// path: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent','dist'),
