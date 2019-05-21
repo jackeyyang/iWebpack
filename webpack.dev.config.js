@@ -6,9 +6,9 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = {
 	entry: {
-		common: ['./src/script/common/common.js'],
 		main: './src/script/main.js',
-		page1: './src/script/page1/page1.js'
+		page1: './src/script/page1/page1.js',
+        common: './src/script/common/common.js'
 	},
 	output: {
 		// path: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent','dist'),
@@ -26,7 +26,12 @@ module.exports = {
 			name: ['common','manifest'],
 			minChunks: Infinity
 		}),
-		new HtmlWebpackHarddiskPlugin()
+		new HtmlWebpackHarddiskPlugin(),
+        new webpack.ProvidePlugin({
+            "$": "jquery",
+            "jQuery": "jquery",
+            "window.jQuery": "jquery"
+        })
 	],
 	devServer: {
 	  // contentBase: path.join(__dirname,'dist'),

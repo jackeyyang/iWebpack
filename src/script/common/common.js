@@ -1,4 +1,6 @@
-var $ = require('./jquery')
+import 'bootstrap'
 module.export = function () {
-    alert(1)
+    alert(1);
+    console.log("hello");
+    $('body');
 }

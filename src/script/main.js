@@ -1,5 +1,3 @@
-var $ = require('./jquery')
-
 var core = {
     init: function(){
         $('#parent').click(function(){
