@@ -8,9 +8,8 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 module.exports = {
 	entry: {
         vendor: Object.keys(packagejson.dependencies), //获取生产环境依赖的库
-        common: './src/script/common/common.js',
-		index: './src/script/index/index.js',
-		page1: './src/script/page1/page1.js',
+        common: './src/commonScript/common.js',
+		index: './src/pages/index/script/index.js'
 	},
 	output: {
 		// path: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent','dist'),
@@ -24,7 +23,7 @@ module.exports = {
             minChunks: Infinity
         }),
 		new htmlWebpackPlugin({
-			template: './src/index.html',
+			template: './src/pages/index/view/index.html',
 			filename: 'index.html',
 			alwaysWriteToDisk: true,
 			devServer: false
