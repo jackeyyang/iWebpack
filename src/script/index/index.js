@@ -9,6 +9,5 @@ var core = {
         });
     },
 }
-
 core.init();
 module.exports = core;
