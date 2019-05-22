@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const packagejson = require("./package.json");
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpackDevServer =  require('webpack-dev-server');
@@ -6,9 +7,10 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = {
 	entry: {
-		main: './src/script/main.js',
+        vendor: Object.keys(packagejson.dependencies), //获取生产环境依赖的库
+        common: './src/script/common/common.js',
+		index: './src/script/index/index.js',
 		page1: './src/script/page1/page1.js',
-        common: './src/script/common/common.js'
 	},
 	output: {
 		// path: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent','dist'),
@@ -16,15 +18,16 @@ module.exports = {
 		filename: 'script/[name].[chunkhash:8].js'
 	},
 	plugins: [
+		// 抽取的公共库js
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['vendor'],
+            minChunks: Infinity
+        }),
 		new htmlWebpackPlugin({
 			template: './src/index.html',
 			filename: 'index.html',
 			alwaysWriteToDisk: true,
 			devServer: false
-		}),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: ['common','manifest'],
-			minChunks: Infinity
 		}),
 		new HtmlWebpackHarddiskPlugin(),
         new webpack.ProvidePlugin({

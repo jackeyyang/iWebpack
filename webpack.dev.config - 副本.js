@@ -6,7 +6,7 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = {
 	entry: {
-		main: './src/script/main.js',
+		main: './src/script/index.js',
 		page1: './src/script/page1.js'
 	},
 	output: {
