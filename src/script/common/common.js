@@ -1,4 +1,4 @@
-import 'bootstrap'
-module.export = function () {
-    console.log('common.js');
+const bootstrap = require('bootstrap');
+module.exports = function () {
+    console.log('common.jssss');
 }

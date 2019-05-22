@@ -11,4 +11,4 @@ var core = {
 }
 
 core.init();
-module.export = core;
+module.exports = core;
