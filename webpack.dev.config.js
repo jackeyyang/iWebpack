@@ -7,19 +7,19 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = {
 	entry: {
-        vendor: Object.keys(packagejson.dependencies), //获取生产环境依赖的库
-        common: './src/commonScript/common.js',
-		index: './src/pages/index/script/index.js'
+        "vendor/vendor": Object.keys(packagejson.dependencies), //获取生产环境依赖的库
+        "commonScript/common": './src/commonScript/common.js',
+		"pages/index/index": './src/pages/index/script/index.js'
 	},
 	output: {
 		// path: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent','dist'),
 		path: path.join(__dirname,'dist'),
-		filename: 'script/[name].[chunkhash:8].js'
+		filename: '[name].[chunkhash:8].js'
 	},
 	plugins: [
 		// 抽取的公共库js
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor'],
+            name: ['vendor/vendor'],
             minChunks: Infinity
         }),
 		new htmlWebpackPlugin({
@@ -36,9 +36,6 @@ module.exports = {
         })
 	],
 	devServer: {
-	  // contentBase: path.join(__dirname,'dist'),
-	  // contentBase: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent',"dist"),
-	  // contentBase: path.join('F:\\Trunk2\\Trunk2Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\javaWebTest',"dist"),
 	  port: 8088
 	}
 };
