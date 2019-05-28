@@ -26,14 +26,14 @@ module.exports = {
 		new htmlWebpackPlugin({
 			template: './src/pages/index/view/index.html',
 			filename: 'index.html',
-			chucks: ['vendor/vendor','commonScript/common',"pages/index/index"]
-
+			chunks: ["vendor/vendor","commonScript/common","pages/index/index"],
+			chunksSortMode: "dependency"
 		}),
 		new htmlWebpackPlugin({
 			template: './src/pages/login/view/login.html',
 			filename: 'login.html',
-			chucks: ['vendor/vendor','commonScript/common',"pages/login/login"]
-
+			chunks: ["vendor/vendor","commonScript/common","pages/login/login"],
+			chunksSortMode: "dependency"
 		}),
 		new HtmlWebpackHarddiskPlugin(),
         new webpack.ProvidePlugin({
