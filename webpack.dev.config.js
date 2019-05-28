@@ -27,13 +27,13 @@ module.exports = {
 			template: './src/pages/index/view/index.html',
 			filename: 'index.html',
 			chunks: ["vendor/vendor","commonScript/common","pages/index/index"],
-			chunksSortMode: "dependency"
+			chunksSortMode: "auto"
 		}),
 		new htmlWebpackPlugin({
 			template: './src/pages/login/view/login.html',
 			filename: 'login.html',
 			chunks: ["vendor/vendor","commonScript/common","pages/login/login"],
-			chunksSortMode: "dependency"
+			chunksSortMode: "auto"
 		}),
 		new HtmlWebpackHarddiskPlugin(),
         new webpack.ProvidePlugin({
