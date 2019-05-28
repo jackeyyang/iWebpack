@@ -9,7 +9,8 @@ module.exports = {
 	entry: {
         "vendor/vendor": Object.keys(packagejson.dependencies), //获取生产环境依赖的库
         "commonScript/common": './src/commonScript/common.js',
-		"pages/index/index": './src/pages/index/script/index.js'
+		"pages/index/index": './src/pages/index/script/index.js',
+		"pages/login/login": './src/pages/login/script/login.js'
 	},
 	output: {
 		// path: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent','dist'),
@@ -25,9 +26,13 @@ module.exports = {
 		new htmlWebpackPlugin({
 			template: './src/pages/index/view/index.html',
 			filename: 'index.html',
-			alwaysWriteToDisk: true,
-			devServer: false,
 			chucks: ['vendor/vendor','commonScript/common',"pages/index/index"]
+
+		}),
+		new htmlWebpackPlugin({
+			template: './src/pages/login/view/login.html',
+			filename: 'login.html',
+			chucks: ['vendor/vendor','commonScript/common',"pages/login/login"]
 
 		}),
 		new HtmlWebpackHarddiskPlugin(),
