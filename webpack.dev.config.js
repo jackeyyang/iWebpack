@@ -26,7 +26,9 @@ module.exports = {
 			template: './src/pages/index/view/index.html',
 			filename: 'index.html',
 			alwaysWriteToDisk: true,
-			devServer: false
+			devServer: false,
+			chucks: ['vendor/vendor','commonScript/common',"pages/index/index"]
+
 		}),
 		new HtmlWebpackHarddiskPlugin(),
         new webpack.ProvidePlugin({
