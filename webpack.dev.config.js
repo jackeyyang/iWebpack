@@ -23,6 +23,10 @@ module.exports = {
             name: ['vendor/vendor'],
             minChunks: Infinity
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['manifest'],
+            minChunks: Infinity
+        }),
 		new htmlWebpackPlugin({
 			template: './src/pages/index/view/index.html',
 			filename: 'index.html',

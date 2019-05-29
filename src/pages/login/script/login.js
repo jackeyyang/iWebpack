@@ -1,6 +1,5 @@
 var login = function (){
-	console.log("login");
-	console.log("xx")
+	console.log("login pages");
 }
 
 module.exports = login;
