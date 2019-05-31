@@ -24,19 +24,19 @@ module.exports = {
             minChunks: Infinity
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['manifest'],
+            name: ['vendor/manifest'],
             minChunks: Infinity
         }),
 		new htmlWebpackPlugin({
 			template: './src/pages/index/view/index.html',
 			filename: 'index.html',
-			chunks: ["vendor/vendor","commonScript/common","pages/index/index"],
+			chunks: ["vendor/manifest","vendor/vendor","commonScript/common","pages/index/index"],
 			chunksSortMode: "auto"
 		}),
 		new htmlWebpackPlugin({
 			template: './src/pages/login/view/login.html',
 			filename: 'login.html',
-			chunks: ["vendor/vendor","commonScript/common","pages/login/login"],
+			chunks: ["vendor/manifest","vendor/vendor","commonScript/common","pages/login/login"],
 			chunksSortMode: "auto"
 		}),
 		new HtmlWebpackHarddiskPlugin(),
@@ -46,6 +46,23 @@ module.exports = {
             "window.jQuery": "jquery"
         })
 	],
+	module:{
+		rules:[
+			{
+				test: /\.css$/,
+				use:[
+					{loader:'style-loader'},
+					{loader:'css-loader'},
+					{
+						loader:'postcss-loader',
+						options:{
+							plugins:[require("autoprefixer")("last 5 versions")]
+						}
+					}
+				]
+			}
+		]
+	},
 	devServer: {
 	  port: 8088
 	}

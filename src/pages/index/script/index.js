@@ -1,7 +1,7 @@
 var core = {
     init: function(){
         $('#parent').click(function(){
-            alert(1);
+            alert(11);
         });
         $('#child').click(function(e){
             e.stopPropagation();
