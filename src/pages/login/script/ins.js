@@ -5,4 +5,5 @@ let App = function(){
 	    console.log("Hello, Fundebug!");
 	}, 100)
 }
-new App();
+
+export default App;
