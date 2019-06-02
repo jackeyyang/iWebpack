@@ -52,12 +52,35 @@ module.exports = {
 				test: /\.css$/,
 				use:[
 					{loader:'style-loader'},
-					{loader:'css-loader'},
+					{
+						loader:'css-loader',
+						options: {
+							importLoaders: 1 // 在cssloader之前还要有1个loader处理
+						}
+					},
 					{
 						loader:'postcss-loader',
 						options:{
 							plugins:[require("autoprefixer")("last 5 versions")]
 						}
+					}
+				]
+			},
+			{
+				test: /\.scss$/,
+				use:[
+					{loader:'style-loader'},
+					{
+						loader:'css-loader'
+					},
+					{
+						loader:'postcss-loader',
+						options:{
+							plugins:[require("autoprefixer")("last 5 versions")]
+						}
+					},
+					{
+						loader: "sass-loader",
 					}
 				]
 			}
