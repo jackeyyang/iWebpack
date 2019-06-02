@@ -1,3 +1,5 @@
+const headerTpl = require("../../../layers/header/header.js");
+
 var core = {
     init: function(){
         $('#parent').click(function(){
@@ -7,6 +9,8 @@ var core = {
             e.stopPropagation();
             alert(222);
         });
+        var headerLayer = headerTpl();
+        $("#header").html(headerLayer.tpl);
     },
 }
 core.init();
