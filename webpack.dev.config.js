@@ -30,7 +30,7 @@ module.exports = {
 		new htmlWebpackPlugin({
 			template: './src/pages/index/view/index.html',
 			filename: 'index.html',
-			chunks: ["vendor/manifest","vendor/vendor","commonScript/common","pages/index/index"],
+			chunks: ["vendor/manifest","vendor/vendor","commonScript/common","pages/index/index","pages/login/ins"],
 			chunksSortMode: "auto"
 		}),
 		new htmlWebpackPlugin({
@@ -48,18 +48,18 @@ module.exports = {
 	],
 	module:{
 		rules:[
-			// {
-			// 	test: /\.js$/,
-			// 	exclude: [/node_modules/],
-			// 	use: [
-			// 		{
-			// 			loader: 'babel-loader',
-			// 			options: {
-			// 				presets: ['@babel/preset-env']
-			// 			}
-			// 		}
-			// 	]
-			// },
+			{
+				test: /\.js$/,
+				exclude: [/node_modules/],
+				use: [
+					{
+						loader: 'babel-loader',
+						options: {
+							presets: ['latest']
+						}
+					}
+				]
+			},
 			{
 				test: /\.css$/,
 				use:[

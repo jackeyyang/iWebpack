@@ -1,5 +1,7 @@
+import ins from "./ins";
+
 var login = function (){
 	console.log("login pages");
 }
 
-module.exports = login;
+export default login;

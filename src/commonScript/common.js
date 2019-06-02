@@ -1,7 +1,13 @@
-const bootstrap = require('bootstrap');
-const commonCss = require('../commonCss/common.css');
-const resetcss = require('../commonCss/reset.scss');
+// const bootstrap = require('bootstrap');
+// const commonCss = require('../commonCss/common.css');
+// const resetcss = require('../commonCss/reset.scss');
+import bootstrap from "bootstrap";
+import commonCss from "../commonCss/common.css";
+import resetcss from "../commonCss/reset.scss"
 
-module.exports = function () {
+
+var commonjs = function () {
     console.log('common.js');
 }
+
+export default commonjs;
