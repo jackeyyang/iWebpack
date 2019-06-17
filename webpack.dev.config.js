@@ -104,6 +104,9 @@ module.exports = {
 		]
 	},
 	devServer: {
-	  port: 8088
+        proxy: {
+            '/jeecg': 'http://localhost:8087'
+        },
+	    port: 8088
 	}
 };
