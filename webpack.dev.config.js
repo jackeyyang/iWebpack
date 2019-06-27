@@ -3,6 +3,7 @@ const packagejson = require("./package.json");
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpackDevServer =  require('webpack-dev-server');
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); // 将css分离
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = {
@@ -31,20 +32,26 @@ module.exports = {
 			template: './src/pages/index/view/index.html',
 			filename: 'index.html',
 			chunks: ["vendor/manifest","vendor/vendor","commonScript/common","pages/index/index","pages/login/ins"],
-			chunksSortMode: "auto"
+			chunksSortMode: "manual" // manual根据chunks的位置手动排序
 		}),
 		new htmlWebpackPlugin({
 			template: './src/pages/login/view/login.html',
 			filename: 'login.html',
 			chunks: ["vendor/manifest","vendor/vendor","commonScript/common","pages/login/login"],
-			chunksSortMode: "auto"
+			chunksSortMode: "manual"
 		}),
 		new HtmlWebpackHarddiskPlugin(),
         new webpack.ProvidePlugin({
             "$": "jquery",
             "jQuery": "jquery",
             "window.jQuery": "jquery"
-        })
+        }),
+    	// 将css抽离生成
+    	new ExtractTextPlugin({
+    		filename: (getPath) => {
+    			return getPath('[name].css').replace('commonScript','commonCss');
+    		}
+    	})
 	],
 	module:{
 		rules:[
@@ -62,8 +69,10 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use:[
-					{loader:'style-loader'},
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use:[
+					// {loader:'style-loader'},
 					{
 						loader:'css-loader',
 						options: {
@@ -78,6 +87,7 @@ module.exports = {
 						}
 					}
 				]
+				})
 			},
 			{
 				test: /\.scss$/,
@@ -104,9 +114,9 @@ module.exports = {
 		]
 	},
 	devServer: {
-        proxy: {
+        /*proxy: {
             '/jeecg': 'http://localhost:8087'
-        },
+        },*/
 	    port: 8088
 	}
 };
