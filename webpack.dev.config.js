@@ -109,8 +109,19 @@ module.exports = {
 			},
 			{
 				test: /\.html/,
-				use:[{loader:'html-loader'}]
-			}
+				use: [{loader:'html-loader'}]
+			},
+			{
+				test: /\.jpg|.jpeg|.gif|.png/,
+				use: [{
+					loader: "file-loader",
+                    options : {
+                        outputPath: "asset",
+                       	name : '[name]/[hash].[ext]',
+                        useRelativePath: true
+					}
+				}]
+            }
 		]
 	},
 	devServer: {
