@@ -4,6 +4,10 @@ body{
 	background: #f00;
 }
 
+#header{
+	background: url("../commonImage/webpack.jpg");
+}
+
 .flex-div{
 	display: flex;
 }

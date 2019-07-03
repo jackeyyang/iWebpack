@@ -116,9 +116,9 @@ module.exports = {
 				use: [{
 					loader: "file-loader",
                     options : {
-                        outputPath: "asset",
-                       	name : '[name]/[hash].[ext]',
-                        useRelativePath: true
+                       	name : '[path][name].[ext]',
+                        context: './src',
+                        publicPath: '/dist' // dist是将来放到项目里的文件夹名字
 					}
 				}]
             }

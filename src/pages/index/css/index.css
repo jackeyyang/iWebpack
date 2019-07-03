@@ -1,3 +1,7 @@
 body{
-	background: green;
+	background: green url("../image/sw.jpg");
+}
+
+#parent{
+	background: url("../../../commonImage/webpack.jpg");
 }
