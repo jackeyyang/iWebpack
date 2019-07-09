@@ -1,18 +1,19 @@
 const webpack = require('webpack');
 const packagejson = require("./package.json");
 const path = require('path');
+const glob = require('glob');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpackDevServer =  require('webpack-dev-server');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // 将css分离
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
+const pageFile = glob.sync('src/pages/**/view/**/*',{
+    nodir: true
+});
+var entries = getEntry(pageFile);
+
 module.exports = {
-	entry: {
-        "vendor/vendor": Object.keys(packagejson.dependencies), //获取生产环境依赖的库
-        "commonScript/common": './src/commonScript/common.js',
-		"pages/index/index": './src/pages/index/script/index.js',
-		"pages/login/login": './src/pages/login/script/login.js'
-	},
+	entry: entries,
 	output: {
 		// path: path.join('F:\\Trunk2\\Trunk2Project\\javaWebTest\\WebContent','dist'),
 		path: path.join(__dirname,'dist'),
@@ -31,7 +32,7 @@ module.exports = {
 		new htmlWebpackPlugin({
 			template: './src/pages/index/view/index.html',
 			filename: 'index.html',
-			chunks: ["vendor/manifest","vendor/vendor","commonScript/common","pages/index/index","pages/login/ins"],
+			chunks: ["vendor/manifest","vendor/vendor","commonScript/common","pages/index/index"],
 			chunksSortMode: "manual" // manual根据chunks的位置手动排序
 		}),
 		new htmlWebpackPlugin({
@@ -118,7 +119,7 @@ module.exports = {
                     options : {
                        	name : '[path][name].[ext]',
                         context: './src',
-                        publicPath: '/dist' // dist是将来放到项目里的文件夹名字
+                        publicPath: '/src' // dist是将来放到项目里的文件夹名字
 					}
 				}]
             }
@@ -131,3 +132,15 @@ module.exports = {
 	    port: 8088
 	}
 };
+
+
+function getEntry(pageFile) {
+    var entries = {};
+    entries["vendor/vendor"] =  Object.keys(packagejson.dependencies); //获取生产环境依赖的库
+    entries["commonScript/common"]= './src/commonScript/common.js';
+
+    pageFile.forEach(function (item) {
+        entries[(item.replace('src/','').replace('/view','')).replace(/\.html$/, '')] = (item.replace('src/','./src/').replace(/\.html$/, '')).replace('/view','/script');
+    });
+    return entries;
+}
