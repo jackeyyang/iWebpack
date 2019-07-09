@@ -90,6 +90,7 @@ module.exports = {
 						loader:'postcss-loader',
 						options:{
 							ident: 'postcss',
+							sourceMap: true,
 							plugins:[require("autoprefixer")("last 5 versions")]
 						}
 					}
@@ -109,6 +110,7 @@ module.exports = {
 					{
 						loader:'postcss-loader',
 						options:{
+							sourceMap: true,
 							plugins:[require("autoprefixer")("last 5 versions")]
 						}
 					},
