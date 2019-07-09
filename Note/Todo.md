@@ -1,2 +1,0 @@
-分离样式文件
-template loader
