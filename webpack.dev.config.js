@@ -23,18 +23,6 @@ config.plugins = [
         name: ['vendor/manifest'],
         minChunks: Infinity
     }),
-    /*new htmlWebpackPlugin({
-        template: './src/pages/index/view/index.html',
-        filename: 'index.html',
-        chunks: ["vendor/manifest","vendor/vendor","commonScript/common","pages/index/index"],
-        chunksSortMode: "manual" // manual根据chunks的位置手动排序
-    }),
-    new htmlWebpackPlugin({
-        template: './src/pages/login/view/login.html',
-        filename: 'login.html',
-        chunks: ["vendor/manifest","vendor/vendor","commonScript/common","pages/login/login"],
-        chunksSortMode: "manual"
-    }),*/
     new HtmlWebpackHarddiskPlugin(),
     new webpack.ProvidePlugin({
         "$": "jquery",
