@@ -82,7 +82,8 @@ module.exports = {
 					{
 						loader:'css-loader',
 						options: {
-							importLoaders: 1 // 在cssloader之前还要有1个loader处理
+							importLoaders: 1, // 在cssloader之前还要有1个loader处理
+							sourceMap: true
 						}
 					},
 					{
@@ -100,7 +101,10 @@ module.exports = {
 				use:[
 					{loader:'style-loader'},
 					{
-						loader:'css-loader'
+						loader:'css-loader',
+						options:{
+							sourceMap: true
+						}
 					},
 					{
 						loader:'postcss-loader',
@@ -110,6 +114,9 @@ module.exports = {
 					},
 					{
 						loader: "sass-loader",
+						options: {
+							sourceMap: true
+						}
 					}
 				]
 			},
@@ -134,7 +141,8 @@ module.exports = {
         /*proxy: {
             '/jeecg': 'http://localhost:8087'
         },*/
-	    port: 8088
+	    port: 8088,
+	    //open: true
 	}
 };
 
