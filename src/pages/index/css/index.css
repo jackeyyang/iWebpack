@@ -5,3 +5,7 @@ body{
 #parent{
 	background: url("../../../commonImage/webpack.jpg");
 }
+
+.red{
+	color: #222;
+}

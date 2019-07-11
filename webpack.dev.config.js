@@ -32,7 +32,7 @@ config.plugins = [
     // 将css抽离生成
     new ExtractTextPlugin({
         filename: (getPath) => {
-            return getPath('[name].css').replace('commonScript','commonCss');
+            return getPath('[name].[contenthash:8].css').replace('commonScript','commonCss');
         }
     })
 ];
