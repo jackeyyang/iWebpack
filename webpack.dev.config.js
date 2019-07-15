@@ -7,6 +7,7 @@ const webpackDevServer =  require('webpack-dev-server');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // 将css分离
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const { CleanWebpackPlugin }  = require('clean-webpack-plugin'); // 清除文件夹
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // 压缩css
 
 const pageFile = glob.sync('src/pages/**/view/**/*',{
     nodir: true
@@ -36,7 +37,13 @@ config.plugins = [
             return getPath('[name].[contenthash:8].css').replace('commonScript','commonCss');
         }
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new OptimizeCssAssetsPlugin({
+        assetNameRegExp: /\.css$/g,
+        cssProcessor: require('cssnano'),
+        cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
+        canPrint: true
+    })
 ];
 
 (config.chunks).forEach(function (item) {
