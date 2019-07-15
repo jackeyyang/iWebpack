@@ -6,6 +6,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpackDevServer =  require('webpack-dev-server');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // 将css分离
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
+const { CleanWebpackPlugin }  = require('clean-webpack-plugin'); // 清除文件夹
 
 const pageFile = glob.sync('src/pages/**/view/**/*',{
     nodir: true
@@ -34,7 +35,8 @@ config.plugins = [
         filename: (getPath) => {
             return getPath('[name].[contenthash:8].css').replace('commonScript','commonCss');
         }
-    })
+    }),
+    new CleanWebpackPlugin()
 ];
 
 (config.chunks).forEach(function (item) {
